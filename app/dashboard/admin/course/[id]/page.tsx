@@ -107,11 +107,18 @@ export default function AdminCoursePage({ params }: { params: Promise<{ id: stri
       setTeachers(teacherList)
 
       const courseEnrollments = enrollments.filter((e: any) => e.courseId === Number(id))
-      const participantList = courseEnrollments
-        .map((e: any) => users.find((u: any) => u.id === e.userId))
-        .filter((u: any) => u && u.role === "participant")
-        .map((u: any) => ({ id: u.id, name: u.name, email: u.email, avatar: u.avatar }))
+      console.log("[v0] Course enrollments:", courseEnrollments)
 
+      const participantList = courseEnrollments
+        .map((e: any) => {
+          const user = users.find((u: any) => u.id === e.userId)
+          return user && user.role === "participant"
+            ? { id: user.id, name: user.name, email: user.email, avatar: user.avatar }
+            : null
+        })
+        .filter((u: any) => u !== null)
+
+      console.log("[v0] Participant list:", participantList)
       setParticipants(participantList)
       setResources(courseData.resources || [])
     } catch (error) {

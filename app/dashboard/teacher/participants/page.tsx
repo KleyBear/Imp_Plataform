@@ -29,6 +29,7 @@ interface CourseParticipants {
     participantName: string
     email: string
     avatar: string
+    progress: number
     submissions: any[]
   }[]
 }
@@ -91,6 +92,7 @@ export default function ParticipantsPage() {
                 participantName: participant.name,
                 email: participant.email,
                 avatar: participant.avatar,
+                progress: e.progress || 0,
                 submissions: enrichedSubmissions,
               }
             }
@@ -310,6 +312,18 @@ export default function ParticipantsPage() {
                                 <div>
                                   <p className="font-medium text-slate-900">{participant.participantName}</p>
                                   <p className="text-sm text-slate-500">{participant.email}</p>
+                                  <div className="mt-2 w-48">
+                                    <div className="flex justify-between text-[10px] font-bold text-slate-500 mb-1">
+                                      <span>PROGRESO</span>
+                                      <span>{participant.progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-slate-200 rounded-full h-1.5">
+                                      <div
+                                        className="bg-blue-600 h-1.5 rounded-full transition-all duration-500"
+                                        style={{ width: `${participant.progress}%` }}
+                                      ></div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                               <span className="text-sm font-semibold text-blue-600">

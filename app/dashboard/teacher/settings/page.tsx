@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { PasswordInput } from "@/components/ui/password-input"
 
 import { useEffect, useState } from "react"
 import { Sidebar } from "@/components/layout/sidebar"
@@ -211,21 +212,19 @@ export default function TeacherSettingsPage() {
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="newPassword">Nueva Contraseña</Label>
-                      <Input
+                      <PasswordInput
                         id="newPassword"
-                        type="password"
                         value={passwordData.newPassword}
-                        onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
+                        onChange={(value) => setPasswordData({ ...passwordData, newPassword: value })}
                         placeholder="Mínimo 8 caracteres"
                       />
                     </div>
                     <div>
                       <Label htmlFor="confirmPassword">Confirmar Contraseña</Label>
-                      <Input
+                      <PasswordInput
                         id="confirmPassword"
-                        type="password"
                         value={passwordData.confirmPassword}
-                        onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
+                        onChange={(value) => setPasswordData({ ...passwordData, confirmPassword: value })}
                         placeholder="Confirma tu nueva contraseña"
                       />
                     </div>

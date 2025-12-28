@@ -9,8 +9,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { PasswordInput } from "@/components/ui/password-input"
 import { api } from "@/lib/api"
-import { BookOpen } from "lucide-react"
+import { BookOpen, Home } from "lucide-react"
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -147,6 +148,15 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        <div className="mb-6">
+          <Link href="/">
+            <Button variant="outline" size="sm" className="gap-2 bg-transparent">
+              <Home className="w-4 h-4" />
+              Volver a Inicio
+            </Button>
+          </Link>
+        </div>
+
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <BookOpen className="w-8 h-8 text-blue-600" />
@@ -209,15 +219,12 @@ export default function RegisterPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="password">Contraseña</Label>
-                <Input
+                <PasswordInput
                   id="password"
-                  type="password"
-                  name="password"
-                  placeholder="••••••••"
                   value={formData.password}
-                  onChange={handleChange}
+                  onChange={(value) => setFormData({ ...formData, password: value })}
+                  placeholder="••••••••"
                   className={errors.password ? "border-red-500" : ""}
-                  required
                 />
                 {errors.password && <p className="text-red-600 text-xs">{errors.password}</p>}
                 <p className="text-xs text-gray-500">Mínimo 8 caracteres, mayúscula, minúscula y número</p>
@@ -225,15 +232,12 @@ export default function RegisterPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="confirmPassword">Confirmar Contraseña</Label>
-                <Input
+                <PasswordInput
                   id="confirmPassword"
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="••••••••"
                   value={formData.confirmPassword}
-                  onChange={handleChange}
+                  onChange={(value) => setFormData({ ...formData, confirmPassword: value })}
+                  placeholder="••••••••"
                   className={errors.confirmPassword ? "border-red-500" : ""}
-                  required
                 />
                 {errors.confirmPassword && <p className="text-red-600 text-xs">{errors.confirmPassword}</p>}
               </div>

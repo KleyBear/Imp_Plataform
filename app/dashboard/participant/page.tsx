@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation"
 import { api } from "@/lib/api"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { BookOpen, Zap, Award, Settings, Search, AwardIcon } from "lucide-react"
+import { BookOpen, Zap, Award, Settings, Search, AwardIcon, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 
@@ -32,6 +32,7 @@ function ParticipantDashboardContent() {
   const [filteredCompleted, setFilteredCompleted] = useState<EnrolledCourse[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [isLoading, setIsLoading] = useState(true)
+  const [showWelcome, setShowWelcome] = useState(false)
 
   useEffect(() => {
     if (!isAuthenticated || user?.role !== "participant") {
@@ -41,7 +42,19 @@ function ParticipantDashboardContent() {
 
   useEffect(() => {
     loadCourses()
+    checkWelcomeStatus()
   }, [user])
+
+  const checkWelcomeStatus = () => {
+    if (user) {
+      const welcomeShown = localStorage.getItem(`welcome_shown_${user.id}`)
+
+      if (!welcomeShown) {
+        setShowWelcome(true)
+        localStorage.setItem(`welcome_shown_${user.id}`, "true")
+      }
+    }
+  }
 
   useEffect(() => {
     const lowerSearch = searchTerm.toLowerCase()
@@ -107,6 +120,40 @@ function ParticipantDashboardContent() {
       <div className="flex-1 md:ml-0 flex flex-col">
         <Header />
         <main className="flex-1 p-4 md:p-8 mt-12 md:mt-0">
+          {showWelcome && (
+            <Card className="mb-6 bg-gradient-to-r from-blue-50 to-blue-100 border-blue-300">
+              <CardContent className="pt-6 relative">
+                <button
+                  onClick={() => setShowWelcome(false)}
+                  className="absolute top-4 right-4 text-blue-600 hover:text-blue-700"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="max-w-lg">
+                  <h3 className="text-2xl font-bold text-blue-900 mb-2">¡Bienvenido a la plataforma!</h3>
+                  <p className="text-blue-800 mb-4">
+                    Nos alegra tenerte con nosotros, {user?.name}. Tu cuenta ha sido creada exitosamente. Aquí podrás:
+                  </p>
+                  <ul className="space-y-2 text-blue-800">
+                    <li className="flex items-center gap-2">
+                      <span className="text-blue-600 font-bold">✓</span> Acceder a todos nuestros cursos
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-blue-600 font-bold">✓</span> Seguir tu progreso en tiempo real
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-blue-600 font-bold">✓</span> Enviar actividades y recibir retroalimentación
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-blue-600 font-bold">✓</span> Completar tus objetivos de aprendizaje
+                    </li>
+                  </ul>
+                  <p className="text-blue-700 mt-4 font-medium">¡Comienza ahora explorando los cursos disponibles!</p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           <h2 className="text-3xl font-bold text-slate-900 mb-8">Mis Cursos</h2>
 
           <Card className="mb-6">

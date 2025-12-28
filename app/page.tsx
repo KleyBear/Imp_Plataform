@@ -78,6 +78,7 @@ export default function HomePage() {
                   <div className="flex items-center gap-3">
                     <Award className="w-6 h-6 text-yellow-300" />
                     {/* <span>Certificación Oficial</span> */}
+                    <span>Excelencia Educativa</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Users className="w-6 h-6 text-yellow-300" />

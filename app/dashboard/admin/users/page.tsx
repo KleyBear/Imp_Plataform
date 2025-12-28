@@ -19,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { PasswordInput } from "@/components/ui/password-input"
 import { Trash2, Edit2, UserPlus, Users, BookOpen, BarChart3, Settings, Search, Lock } from "lucide-react"
 
 interface User {
@@ -248,11 +249,11 @@ export default function UsersPage() {
                   {!editingUser && (
                     <div>
                       <Label htmlFor="password">Contraseña</Label>
-                      <Input
+                      <PasswordInput
                         id="password"
-                        type="password"
                         value={formData.password}
-                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                        onChange={(value) => setFormData({ ...formData, password: value })}
+                        placeholder="Mínimo 8 caracteres"
                         className={errors.password ? "border-red-500" : ""}
                       />
                       {errors.password && <p className="text-red-600 text-xs mt-1">{errors.password}</p>}
@@ -367,21 +368,19 @@ export default function UsersPage() {
                                 <div className="space-y-4">
                                   <div>
                                     <Label htmlFor="newPass">Nueva Contraseña</Label>
-                                    <Input
+                                    <PasswordInput
                                       id="newPass"
-                                      type="password"
                                       value={newPassword}
-                                      onChange={(e) => setNewPassword(e.target.value)}
+                                      onChange={setNewPassword}
                                       placeholder="Mínimo 8 caracteres"
                                     />
                                   </div>
                                   <div>
                                     <Label htmlFor="confirmPass">Confirmar Contraseña</Label>
-                                    <Input
+                                    <PasswordInput
                                       id="confirmPass"
-                                      type="password"
                                       value={confirmPassword}
-                                      onChange={(e) => setConfirmPassword(e.target.value)}
+                                      onChange={setConfirmPassword}
                                       placeholder="Confirma la contraseña"
                                     />
                                   </div>

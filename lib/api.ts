@@ -42,6 +42,7 @@ export const api = {
   updateEnrollment: (id: number, data: any) =>
     fetchAPI(`/enrollments/${id}`, { method: "PATCH", body: JSON.stringify(data) }),
   deleteEnrollment: (id: number) => fetchAPI(`/enrollments/${id}`, { method: "DELETE" }),
+  getEnrollmentById: (id: number) => fetchAPI(`/enrollments/${id}`),
 
   // Activities
   getActivities: (courseId?: number) => {
@@ -62,4 +63,20 @@ export const api = {
   updateSubmission: (id: number, data: any) =>
     fetchAPI(`/submissions/${id}`, { method: "PATCH", body: JSON.stringify(data) }),
   deleteSubmission: (id: number) => fetchAPI(`/submissions/${id}`, { method: "DELETE" }),
+
+  recordVideoView: (enrollmentId: number) =>
+    fetchAPI(`/enrollments/${enrollmentId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ videoWatched: true }),
+    }),
+
+  recordFileAccess: async (enrollmentId: number) => {
+    const enrollment = await fetchAPI(`/enrollments/${enrollmentId}`)
+    return fetchAPI(`/enrollments/${enrollmentId}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        filesAccessedCount: (enrollment?.filesAccessedCount || 0) + 1,
+      }),
+    })
+  },
 }

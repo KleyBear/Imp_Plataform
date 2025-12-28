@@ -89,13 +89,24 @@ function CoursesPageContent() {
 
   const handleEnroll = async (courseId: number) => {
     try {
-      await api.createEnrollment({
+      const course = courses.find((c) => c.id === courseId)
+      if (course) {
+        await api.updateCourse(courseId, {
+          students: (course.students || 0) + 1,
+        })
+      }
+
+      const newEnrollment = {
         userId: user?.id,
         courseId,
         status: "enrolled",
         progress: 0,
         enrolledAt: new Date().toISOString().split("T")[0],
-      })
+        videoWatched: false,
+        filesAccessedCount: 0,
+      }
+      await api.createEnrollment(newEnrollment)
+      console.log("[v0] Enrollment created:", newEnrollment)
       loadCourses()
     } catch (error) {
       console.error("Error enrolling in course:", error)
