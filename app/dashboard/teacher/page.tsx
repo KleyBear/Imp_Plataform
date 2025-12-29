@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { BookPlus, Trash2, Edit2, Users, BarChart3, Settings, Search } from "lucide-react"
+import { BookPlus, Trash2, Edit2, Users, BarChart3, Settings, Search, BookOpen } from "lucide-react"
 import Link from "next/link"
 
 interface Course {
@@ -173,6 +173,7 @@ function TeacherDashboardContent() {
   const menuItems = [
     { title: "Dashboard", href: "/dashboard/teacher", icon: <BarChart3 className="w-5 h-5" /> },
     { title: "Participantes", href: "/dashboard/teacher/participants", icon: <Users className="w-5 h-5" /> },
+    { title: "Tutorial", href: "/dashboard/teacher/tutorial", icon: <BookOpen className="w-5 h-5" /> },
     { title: "Configuración", href: "/dashboard/teacher/settings", icon: <Settings className="w-5 h-5" /> },
   ]
 

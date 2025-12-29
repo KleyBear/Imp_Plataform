@@ -90,6 +90,7 @@ export default function AdminDashboard() {
     { title: "Dashboard", href: "/dashboard/admin", icon: <BarChart3 className="w-5 h-5" /> },
     { title: "Usuarios", href: "/dashboard/admin/users", icon: <Users className="w-5 h-5" /> },
     { title: "Cursos", href: "/dashboard/admin/courses", icon: <BookOpen className="w-5 h-5" /> },
+    { title: "Tutorial", href: "/dashboard/admin/tutorial", icon: <BookOpen className="w-5 h-5" /> },
     { title: "Configuración", href: "/dashboard/admin/settings", icon: <Settings className="w-5 h-5" /> },
   ]
 

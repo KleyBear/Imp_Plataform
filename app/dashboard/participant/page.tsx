@@ -111,6 +111,7 @@ function ParticipantDashboardContent() {
     { title: "Mis Cursos", href: "/dashboard/participant", icon: <BookOpen className="w-5 h-5" /> },
     { title: "Cursos Disponibles", href: "/dashboard/participant/courses", icon: <Zap className="w-5 h-5" /> },
     { title: "Actividades", href: "/dashboard/participant/activities", icon: <Award className="w-5 h-5" /> },
+    { title: "Tutorial", href: "/dashboard/participant/tutorial", icon: <BookOpen className="w-5 h-5" /> },
     { title: "Configuración", href: "/dashboard/participant/settings", icon: <Settings className="w-5 h-5" /> },
   ]
 

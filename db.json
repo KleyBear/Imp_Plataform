@@ -64,6 +64,17 @@
       "phone": "",
       "createdAt": "2025-12-28",
       "id": 6
+    },
+    {
+      "name": "juan perez",
+      "username": "juanperez",
+      "email": "juan12@platform.com",
+      "password": "Juan1234",
+      "role": "participant",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=juanperez",
+      "phone": "",
+      "createdAt": "2025-12-29",
+      "id": 7
     }
   ],
   "courses": [
