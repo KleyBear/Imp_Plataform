@@ -122,7 +122,7 @@ export default function LoginPage() {
               </div>
             </form>
 
-            <div className="mt-6 pt-6 border-t space-y-2">
+            {/* <div className="mt-6 pt-6 border-t space-y-2">
               <p className="text-xs text-gray-500 font-semibold">Credenciales de demostración:</p>
               <div className="space-y-1 text-xs text-gray-600">
                 <p>
@@ -135,7 +135,7 @@ export default function LoginPage() {
                   <strong>Estudiante:</strong> maria@platform.com / student123
                 </p>
               </div>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
       </div>

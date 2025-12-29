@@ -39,12 +39,12 @@ export function Sidebar({ items }: SidebarProps) {
 
       <div
         className={cn(
-          "fixed inset-y-0 left-0 z-30 w-64 bg-slate-900 text-white transform transition-transform duration-200 md:translate-x-0 md:static",
+                    "fixed inset-y-0 left-0 z-30 w-64 bg-gradient-to-b from-blue-700 to-blue-900 text-white transform transition-transform duration-200 md:translate-x-0 md:static",
           isOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="h-full flex flex-col">
-          <div className="p-6 border-b border-slate-700">
+          <div className="p-6 border-b border-blue-600">
             <h2 className="text-xl font-bold">Extensión Universitaria Táchira</h2>
           </div>
 
@@ -54,7 +54,7 @@ export function Sidebar({ items }: SidebarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-600 text-blue-100"
               >
                 <span className="text-lg">{item.icon}</span>
                 <span className="font-medium">{item.title}</span>
@@ -62,7 +62,7 @@ export function Sidebar({ items }: SidebarProps) {
             ))}
           </nav>
 
-          <div className="p-4 border-t border-slate-700 space-y-3">
+          <div className="p-4 border-t border-blue-600 space-y-3">
             <div className="flex items-center gap-3">
               <img src={user?.avatar || "/placeholder.svg"} alt={user?.name} className="w-10 h-10 rounded-full" />
               <div className="flex-1 min-w-0">
@@ -73,7 +73,7 @@ export function Sidebar({ items }: SidebarProps) {
             <Button
               onClick={handleLogout}
               variant="outline"
-              className="w-full bg-slate-800 hover:bg-slate-700 text-white border-slate-600"
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white border-blue-500"
             >
               <LogOut className="w-4 h-4 mr-2" />
               Cerrar Sesión
